@@ -4,7 +4,7 @@ import csv
 
 csv_file = open('links.csv','w')
 csv_writer = csv.writer(csv_file)
-csv_writer.writerow(['youtube_links'])
+csv_writer.writerow(['headline','summary','youtube_links'])
 source = requests.get('http://coreyms.com').text
 
 soup=BeautifulSoup(source,'lxml')
@@ -25,5 +25,5 @@ for article in soup.find_all('article'):
     y_link = version[0]
     y_link=f'www.youtube.com/watch?v={version[0]}'
     #print(y_link)
-    csv_writer.writerow([y_link])
+    csv_writer.writerow([headline,summary,y_link])
 csv_file.close()
